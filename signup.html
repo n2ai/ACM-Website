@@ -8,12 +8,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <script
+    src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+    crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
     <!--Big session that include all the information-->
     <div class="main-session">
-        <form class="signup-form" action="#" method="post">
+        <form class="signup-form"  action="">
             <!--Let's get started quote-->
             <div class="started-quote">
                 <div class="text">
@@ -34,9 +38,8 @@
 
             <!--Submission button-->
             <div class="button-div">
-                <button type="submit" value="Sign-Up">
-                    Sign-Up
-                </button>
+                <input class="button" type="submit" value="Sign-Up">
+            </input>
             </div>
             
             <p class="loginDirectory"><a href="/">Already have an Account?</a></p>
@@ -50,7 +53,7 @@
                 </div>
             </div>
         </form>
-
+        <script src="scripts/signup.js"></script>
     </div>
 </body>
 </html>

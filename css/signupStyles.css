@@ -105,7 +105,7 @@ body{
     
 }
 
-button{
+.button{
     height:50px;
     width: 100px;
     background-color:	#DCDCDC;
