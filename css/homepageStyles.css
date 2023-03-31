@@ -1,0 +1,85 @@
+/**3-26-2023 Hai Trinh Staff section**/
+*{
+    margin:0;
+    padding:0;
+}
+.scrollbar{
+    width: 500px;
+    display:flex;
+    overflow-x: scroll;
+    justify-content: space-between;
+    height: 200px;
+}
+.scrollbar-section::-webkit-scrollbar{
+    width: 10px;
+
+}
+.scrollbar .scrollbar-staff{
+    
+    background-color: #ddd;
+    margin-right: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.scrollbar-staff img{
+    width: 100%;
+    height: 70%;
+}
+
+.scrollbar-section{
+    display:flex;
+    justify-content: center;
+}
+
+.card-title{
+    text-align: center;
+    margin-top: 10px;
+}
+
+/**3-30-2023 Hai Trinh Events section**/
+.events-section{
+    background-color: #FAE29C;
+}
+
+.events-title{
+    margin-top: 25px;
+}
+.title{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.title > h1{
+    text-align: center;
+}
+
+.events-container{
+    display: flex;
+    justify-content: center;
+}
+
+.events-scrollbar{
+    width: 1000px;
+    display:flex;
+    
+    overflow-x: auto;
+    justify-content: space-between;
+    height:300px
+}
+
+
+.events-container::-webkit-scrollbar{
+    width: 10px;
+    height:10px;
+
+}
+
+.event-card{
+    background-color: #ddd;
+    margin-right: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
