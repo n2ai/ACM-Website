@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for
 from app.forms import SignupForm, EmailError
 import random
 from app import db
-from app.models import  UserPassword, UserAccount, Staff
+from app.models import  UserPassword, UserAccount, Staff, Trending, News
 
 with app.app_context():
     db.create_all()
@@ -11,6 +11,8 @@ with app.app_context():
 @app.route('/')
 def homepage():
     staff_members = Staff.query.limit(3).all()
+    news = News.query.limit(5).all()
+    trending = Trending.query.limit(5).all()
     return render_template('homepage.html', staff_members=staff_members)
 
 @app.route('/staff')

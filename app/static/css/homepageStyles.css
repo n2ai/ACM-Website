@@ -144,3 +144,104 @@
 .contactEmail{
     margin-left: 10px;
 }
+
+.news-section{
+    background-color: #D3D3D3;
+}
+
+.news-title{
+    margin-top: 25px;
+}
+.title{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.title > h1{
+    text-align: center;
+}
+
+.news-container{
+    display: flex;
+    justify-content: center;
+    height: 350px;
+}
+
+.news-scrollbar{
+    width: 1000px;
+    display:flex;
+    
+    overflow-x: auto;
+    justify-content: space-between;
+    height:300px
+}
+
+
+.news-container::-webkit-scrollbar{
+    width: 10px;
+    height:10px;
+
+}
+
+.news-card{
+    background-color: #ddd;
+    margin-right: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.news-date{
+    grid-row:1/5;
+    border-right: 5px solid olive;
+}
+
+.news-date-day{
+    display: flex;
+    justify-content: center;
+}
+
+.news-date-month{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.news-title{
+    grid-row: 1/4;
+    display: flex;
+    justify-content: center;
+}
+
+
+.news-destination{
+    grid-row: 5/6;
+    grid-column: 2;
+    display: flex;
+    
+}
+
+.destination{
+    margin-left: 10px;
+}
+
+.news-description{
+    grid-row: 6/7 ;
+    grid-column: 2;
+    display: -webkit-box;
+    
+}
+
+.description{
+    margin-left: 10px;
+}
+
+.news-contactEmail{
+    grid-row: 8/7;
+    grid-column: 2;
+    display: flex;
+}
+
+.contactEmail{
+    margin-left: 10px;
+}

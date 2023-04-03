@@ -33,3 +33,16 @@ class Staff(db.Model):
 
     def __repr__(self):
         return '<UserPassword {}>'.format(self.email)
+    
+class News(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), nullable=False)
+    description = db.Column(db.String(256), nullable=False)
+    image_url = db.Column(db.String(256), nullable=False)
+
+
+class Trending(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), nullable=False)
+    description = db.Column(db.String(256), nullable=False)
+    image_url = db.Column(db.String(256), nullable=False)
