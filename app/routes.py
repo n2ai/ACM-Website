@@ -51,9 +51,10 @@ def staff():
     staff_members = Staff.query.limit(3).all()
     return render_template('staff.html', staff_members=staff_members)
 
-@app.route('/admin')
+
+@app.route('/panel')
 def loadPage():
-    return render_template('admin.html')
+    return render_template('panel.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
