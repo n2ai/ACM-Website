@@ -19,6 +19,7 @@ def create_event():
     db.session.add(event)
     db.session.commit()
     #return jsonify({'message': 'Event created successfully!'})
+    
     return redirect(url_for('get_events'))
 
 # load all events into website
