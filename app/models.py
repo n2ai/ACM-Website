@@ -1,5 +1,9 @@
 from datetime import datetime
 from app.database import db
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
 
 
 #class User(db.Model):
@@ -46,3 +50,13 @@ class Trending(db.Model):
     name = db.Column(db.String(64), nullable=False)
     description = db.Column(db.String(256), nullable=False)
     image_url = db.Column(db.String(256), nullable=False)
+
+class Events(db.Model):
+    title = db.Column(db.String(128),primary_key=True, nullable=False)
+    summary = db.Column(db.String(128), nullable=False)
+    presenter = db.Column(db.String(128), nullable=False)
+    place = db.Column(db.String(128), nullable=False)
+    time = db.Column(db.String(15), nullable=False)
+    date = db.Column(db.String(15), nullable=False)
+    #contact_number = db.Column(db.String(16), nullable=False)
+    #contact_email = db.Column(db.String(64), nullable=False)

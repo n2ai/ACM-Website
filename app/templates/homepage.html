@@ -62,17 +62,17 @@
                 <div class="event-card shadow-lg" class="card">
                     <div class="card-body" style="width: 400px; height: 300px;">
                         <div class="event-date">
-                            <div class="event-date-day"><h1>{{ event.date.day }}</h1></div>
+                            <div class="event-date-day"><h4>{{ event.date }}</h4></div>
                             <div class="event-date-month"><h1>{{ event.date.month }}</h1></div>
                         </div>
                         <div class="event-title">
-                            <div class="event-title-text"><h1>{{ event.title }}</h1></div>
+                            <div class="event-title-text"><h3>{{ event.title }}</h3></div>
                         </div>
                         <div class="event-destination">
                             <span class="material-symbols-outlined">
                                 location_on
                             </span>
-                            <h5 class="destination">{{ event.location }}</h5>
+                            <h5 class="destination">{{ event.place }}</h5>
                         </div>
                         <div class="event-contactNumber">
                             <span class="material-symbols-outlined">
@@ -84,7 +84,9 @@
                             <span class="material-symbols-outlined">
                                 mail
                             </span>
-                            <h5 class="contactEmail">{{ event.contact_email }}</h5>
+
+                            <h5 class="contactEmail"><a href="mailto:{{ event.contact_email }}">{{ event.contact_email }} </a></h5>
+                           
                         </div>
                     </div>
                 </div>
@@ -195,8 +197,6 @@
         </div>
     </div>
     
-    
-
 
 </body>
 </html>
