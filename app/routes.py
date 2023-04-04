@@ -37,7 +37,8 @@ fake_articles   =      [  {
 @app.route('/')
 def homepage():
     staff_members = Staff.query.limit(3).all()
-    return render_template('homepage.html', staff_members=staff_members,events = fake_events, articles = fake_articles)
+    events = Events.query.limit(3).all()
+    return render_template('homepage.html', staff_members=staff_members,events = events, articles = fake_articles)
 
 @app.route('/staff')
 def staff():
