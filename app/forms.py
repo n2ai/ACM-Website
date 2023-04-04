@@ -34,7 +34,7 @@ class SignupForm(FlaskForm):
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()], render_kw={"placeholder": "Login Email", "class": "login-item"})
     password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password", "class": "login-item"})
-    submit = SubmitField('Log in')
+    submit = SubmitField('Log in',render_kw={"class":"login-button", "method":"POST"})
 
     def __repr__(self):
         return '<User {}>'.format(self.email)

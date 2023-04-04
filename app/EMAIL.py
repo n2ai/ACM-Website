@@ -1,7 +1,6 @@
 from app.database import db #, event database, events
 from app import app
 from datetime import datetime
-from flask import Flask,url_for,redirect
 import asyncio
 import smtplib
 import ssl

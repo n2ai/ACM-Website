@@ -1,45 +1,32 @@
-from app import app
-from flask import render_template, flash, redirect, url_for, jsonify, Response, json, request
-from app.forms import SignupForm, EmailError
+from app import app, jwt
+from flask import render_template, flash, redirect, url_for, request, jsonify, make_response
+from app.forms import SignupForm, EmailError, LoginForm
 import random
 from app import db
-from app.models import  UserPassword, UserAccount, Staff
-import jwt
-from .database import db
-from datetime import datetime
-from functools import wraps
+from app.models import  UserPassword, UserAccount, Staff,TokenBlocklist
+from flask_jwt_extended import create_access_token,jwt_required, get_jwt
+from datetime import timedelta
 
-#A token require for other route
-def token_required(f):
-    @wraps(f)
-    def Token_check(*args, **kwargs):
-        token = None
 
-        if 'x-access-token' in request.headers:
-            token = request.headers['x-access-token']
 
-        if not token:
-            return jsonify({'message' : 'Token is missing!'}), 401
 
-        try: 
-            data = jwt.decode(token, app.config['SECRET_KEY'])
-            current_user = UserAccount.query.filter_by(email=data['email']).first()
-        except:
-            return jsonify({'message' : 'Token is invalid!'}), 401
-
-        return f(current_user, *args, **kwargs)
-
-    return Token_check
-#Put this under login routen need a secret key
-#token = jwt.encode({'email' : UserAccount.email, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=180)}, app.config['SECRET_KEY'])
 
 with app.app_context():
     db.create_all()
 
+@jwt.token_in_blocklist_loader
+def check_if_token_revoked(jwt_header, jwt_payload: dict) -> bool:
+    jti = jwt_payload["jti"]
+    token = db.session.query(TokenBlocklist.id).filter_by(jti=jti).scalar()
+
+    return token is not None
+
+
+
 @app.route('/')
-@app.route('/index')
-def index():
-    return render_template('index.html')
+def homepage():
+    staff_members = Staff.query.limit(3).all()
+    return render_template('homepage.html', staff_members=staff_members)
 
 @app.route('/staff')
 def staff():
@@ -73,8 +60,8 @@ def signup():
 
         # flash a success message and redirect to index page
         flash('You have successfully signed up!')
-        return render_template('index.html', form=form)
-     
+        #return render_template('homepage.html', form=form) #images do not load with this?
+        return redirect(url_for('homepage'))
     # if the email is already in the database, flash an error message
     elif form.email.errors == [EmailError.EMAIL_IN_DB.value]:
         flash(EmailError.EMAIL_IN_DB.value)
@@ -89,6 +76,36 @@ def signup():
     
     else:  
         return render_template('signup.html', form=form)
+    
+@app.route('/login', methods=["POST","GET"])
+def login():
+    
+    form=LoginForm()
+    if request.method == "POST":
+        user = UserPassword.query.filter_by(email=form.email.data).first()
+        if not user:
+            return render_template('login.html',form=form)
+        if user.password != form.password.data:
+            return render_template('login.html',form=form)
+        access_token = create_access_token(identity=form.email.data,expires_delta=timedelta(minutes=120)) # Creating a token stores user email that expires in 2 hours
+        return make_response(jsonify(access_token=access_token))#return token for front-end
+    else:
+        return render_template('login.html', form=form)
+        
+        
+    
+
+@app.route("/logout", methods=["PUT"])
+@jwt_required()
+def modify_token():
+    jti = get_jwt()["jti"]
+    db.session.add(TokenBlocklist(jti=jti))
+    db.session.commit()
+    return make_response(jsonify(msg="Loged out"))#add an unvalid token to blocklist so it's no longer usable to access protected route
+
+
+    
+
 
 
     

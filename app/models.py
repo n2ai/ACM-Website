@@ -33,3 +33,10 @@ class Staff(db.Model):
 
     def __repr__(self):
         return '<UserPassword {}>'.format(self.email)
+    
+
+class TokenBlocklist(db.Model):
+    __bind_key__= "BLocklist"
+    id = db.Column(db.Integer, primary_key=True)
+    jti = db.Column(db.String(36), nullable=False, index=True)
+# blocklist database model
