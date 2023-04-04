@@ -96,107 +96,35 @@
 
     <!-- News section by Rei (3-4-2023)-->
     <div class="news-section">
-        <div class="news-title row" >
+        <div class="news-title row">
             <div class="title col-12">
                 <h1>News</h1>
             </div>
         </div>
-        
+    
         <div class="news-container">
-            <div class="news-scrollbar">
-                <div class="news-card shadow-lg" class="card" >
-                    <div class="card-body" style="width: 400px; height: 300px;" >
-                        <div class="news-date">
-                            <div class="news-date-day"><h1>2</h1></div>
-                            <div class="news-date-month"><h1>July</h1></div>
-                        </div>
-                        <div class="news-title">
-                            <div class="news-title-text"><h1>Robotathon News</h1></div>
-                        </div>
-                        <div class="news-destination">
-                            <span class="material-symbols-outlined">
-                                location_on
-                            </span>
-                            <h5 class="destination">A300 UHD Main campus</h5>
-                        </div>
-                        <div class="news-description">
-                            <span class="material-symbols-outlined">
-                                description
-                            </span>
-                            <h5 class="description">This news is about Robotathon</h5>
-                        </div>
-                        <div class="news-contactEmail">
-                            <span class="material-symbols-outlined">
-                                mail
-                            </span>
-                            <h5 class="contactEmail">longhai2511@gmail.com</h5>
-                        </div>
+            {% for article in articles %}
+            <div class="news-card shadow-lg">
+                <div class="card-body">
+                    <div class="news-image">
+                        <img src="{{ article.image_url }}" alt="{{ article.title }}">
                     </div>
-                </div>
-                <div class="news-card shadow-lg" class="card" >
-                    <div class="card-body" style="width: 400px; height: 300px;" >
-                        <div class="news-date">
-                            <div class="news-date-day"><h1>2</h1></div>
-                            <div class="news-date-month"><h1>July</h1></div>
-                        </div>
-                        <div class="news-title">
-                            <div class="news-title-text"><h1>Robotathon News</h1></div>
-                        </div>
-                        <div class="news-destination">
-                            <span class="material-symbols-outlined">
-                                location_on
-                            </span>
-                            <h5 class="destination">A300 UHD Main campus</h5>
-                        </div>
-                        <div class="news-description">
-                            <span class="material-symbols-outlined">
-                                description
-                            </span>
-                            <h5 class="description">This news is about Robotathon</h5>
-                        </div>
-                        <div class="event-contactEmail">
-                            <span class="material-symbols-outlined">
-                                mail
-                            </span>
-                            <h5 class="contactEmail">longhai2511@gmail.com</h5>
-                        </div>
+                    <div class="news-title">
+                        <h2>{{ article.title }}</h2>
                     </div>
-                </div>
-                <div class="news-card shadow-lg" class="card" >
-                    <div class="card-body" style="width: 400px; height: 300px;" >
-                        <div class="news-date">
-                            <div class="news-date-day"><h1>2</h1></div>
-                            <div class="news-date-month"><h1>July</h1></div>
-                        </div>
-                        <div class="news-title">
-                            <div class="news-title-text"><h1>Robotathon News</h1></div>
-                        </div>
-                        <div class="news-destination">
-                            <span class="material-symbols-outlined">
-                                location_on
-                            </span>
-                            <h5 class="destination">A300 UHD Main campus</h5>
-                        </div>
-                        <div class="news-description">
-                            <span class="material-symbols-outlined">
-                                description
-                            </span>
-                            <h5 class="description">This news is about Robotathon</h5>
-                        </div>
-                        <div class="news-contactEmail">
-                            <span class="material-symbols-outlined">
-                                mail
-                            </span>
-                            <h5 class="contactEmail">longhai2511@gmail.com</h5>
-                        </div>
+                    <div class="news-summary">
+                        <p>{{ article.summary }}</p>
+                    </div>
+                    <div class="news-link">
+                        <a href="{{ article.url }}">Read More</a>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
     
     
-
 
 </body>
 </html>
