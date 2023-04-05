@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>Admin Panel</title>
   <style>
-    body {
+    .daGrid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       grid-gap: 20px;
@@ -26,7 +26,10 @@
 
 <body>
   <h1>Admin Panel</h1>
+  <h2>Welcome User!</h2>
+<div class = "daGrid">
 
+  <!-- Events table updating-->  
   <form method="POST" action="http://127.0.0.1:5000/events">
     <h2>Create Event</h2>
     <label for="title">Title:</label>
@@ -93,8 +96,6 @@
     <button type="submit">Update Event</button>
   </form>
 
-
-
   <form method="POST" action="http://127.0.0.1:5000/DEL">
     <h2>Delete Event</h2>
     <input type="hidden" name="_method" value="DELETE">
@@ -111,8 +112,20 @@
 
 
 
+
+</div>
+
+
+
+
+
+
+
 </body>
 
 
+<footer>
+  <p><a href="/admin/log" >View Admin Log</a></p>
+</footer>
 
 </html>
