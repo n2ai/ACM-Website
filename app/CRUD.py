@@ -5,7 +5,6 @@ from app import app, db
 from app.models import Events
 
 #event CRUD commands
-# Create a new event
 @app.route('/events', methods=['POST'])
 def create_event():
     title = request.form['title']
@@ -23,7 +22,6 @@ def create_event():
 
 @app.route('/UPDATE', methods=['POST'])
 def update_event():
-    #template form read
     title = request.form['title']
     new_title = request.form['new_title']
     summary = request.form['summary']
@@ -38,7 +36,7 @@ def update_event():
         flash('Event not found!')
         return redirect(url_for('get_events'))
 
-    #save variables to data columns
+   #save variables to data columns
     event.title = new_title
     event.summary = summary
     event.presenter = presenter
@@ -56,6 +54,9 @@ def update_event():
 def get_events():
     events = Events.query.all()
     return render_template('panel.html', events=events)
+
+
+
 
 
 # Define a route to handle the DELETE request method for '/events'

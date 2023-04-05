@@ -27,6 +27,9 @@
 <body>
   <h1>Admin Panel</h1>
   <h2>Welcome User!</h2>
+
+
+
 <div class = "daGrid">
 
   <!-- Events table updating-->  
@@ -65,6 +68,27 @@
     <button type="submit">Load Events</button>
   </form>
 
+
+  <!-- Experimental, trying to reduce code repetition. 
+  Goal is to use 1 block to select content that will be modified. 
+  then dynamically update CRUD blocks to handle the selected content-->
+  <form method="GET" action="http://127.0.0.1:5000/load">
+    <div>
+      <h2>Load Content</h2>
+      <label for="category">Select a category:</label>
+      <select name="category" id="category">
+        <option value="events">Events</option>
+        <option value="staff">Staff</option>
+        <option value="news">News</option>
+      </select>
+      <br>
+      <button type="submit">Load</button>
+    </div>
+  </form>
+
+  
+
+  
   <form method="POST" action="http://127.0.0.1:5000/UPDATE">
     <h2>Update Event</h2>
     <input type="hidden" name="_method" value="PUT">
