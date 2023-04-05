@@ -22,6 +22,8 @@
     </style>
 <body>
 
+    <a href="{{ url_for('get_events') }}" class="btn btn-light"> >Go to Admin Panel<</a>
+
     <!--Hai Trinh 3-28-2023 OurStaff Section-->
     
     <div class="row">
@@ -36,7 +38,7 @@
         <h1 class="text-center mb-3">Top 3 Staff Members</h1>
         <div class="scrollbar-section">
             <div class="scrollbar">
-                {% for staff_member in staff_members %}
+                {% for staff_member in staff_members%}
                 <div class="scrollbar-staff shadow-lg" class="card" >
                     <img class="card-img-top" src="{{staff_member.image_url}}" alt="{{staff_member.name}}">
                     <div class="card-body" style="width: 150px; height: 1em;" >
