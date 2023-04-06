@@ -24,6 +24,3 @@ htmlcov/
 .coverage.*
 *,cover
 
-# Database
-instance/
-*.db
