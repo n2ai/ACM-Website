@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/styles.css')}}">
+    <title>lOGIN</title>
+</head>
+<body>
+    <form method="POST" action="/login">
+        {{ form.hidden_tag() }}
+        <h2>Log in</h2>
+        <div class="login-session">
+            {{form.email}}
+            <br>
+            {{form.password}}
+            <br>
+            <div class="button-div" method="POST" action="{{ url_for('login') }}">
+                {{ form.submit }}
+            </div>
+        
+        </div>
+
+</body>
+</html>
+
