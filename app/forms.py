@@ -27,7 +27,7 @@ class SignupForm(FlaskForm):
             raise ValidationError(EmailError.EMAIL_IN_DB.value)
         
         #check if email is already in ends in uhd.edu
-        if not email.data.endswith('gator.uhd.edu'):
+        if not email.data.endswith('gator.uhd.edu') and not email.data.endswith('uhd.edu'):
             raise ValidationError(EmailError.INVALID_EMAIL_DOMAIN.value)
     
 

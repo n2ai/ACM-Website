@@ -1,13 +1,11 @@
 from app import app
 from flask import render_template, flash, redirect, url_for
-from app.forms import SignupForm, EmailError
+from app.forms import SignupForm, LoginForm, EmailError
 import random
 from app import db
 
 from app.models import  UserPassword, UserAccount, Staff, Trending, News, Events
-
-
-
+from flask_login import current_user, login_user, logout_user, login_required
 
 with app.app_context():
     db.create_all()
@@ -15,7 +13,7 @@ with app.app_context():
 from app.CRUD import *
 
 """
-fake_events = [    {        'date': {'day': '26', 'month': 'Jun'},        'title': 'Robotathon',        'location': 'A300 UHD Main campus',        'contact_number': '0905136250',        'contact_email': 'longhai2511@gmail.com'    },
+fake_events = [{       'date': {'day': '26', 'month': 'Jun'},        'title': 'Robotathon',        'location': 'A300 UHD Main campus',        'contact_number': '0905136250',        'contact_email': 'longhai2511@gmail.com'    },
               {        'date': {'day': '27', 'month': 'Jun'},        'title': 'Hackathon',        'location': 'B200 UHD Main campus',        'contact_number': '0905136251',        'contact_email': 'longhai2512@gmail.com'    },    
               {        'date': {'day': '28', 'month': 'Jun'},        'title': 'CodeFest',        'location': 'C300 UHD Main campus',        'contact_number': '0905136252',        'contact_email': 'longhai2513@gmail.com'    }]
 
@@ -41,10 +39,13 @@ fake_articles   =      [  {
     ]
 
 @app.route('/')
+#@login_required
 def homepage():
     staff_members = Staff.query.limit(15).all()
     events = Events.query.limit(15).all()
-    return render_template('homepage.html', staff_members=staff_members,events = events, articles = fake_articles)
+    #return render_template('homepage.html', staff_members=staff_members,events = events, articles = fake_articles)
+    first_name = UserAccount.query.filter_by(email=current_user.email).first().first_name
+    return render_template('homepage.html', first_name= first_name, staff_members=staff_members,events = events, articles = fake_articles)
 
 @app.route('/staff')
 def staff():
@@ -53,11 +54,14 @@ def staff():
 
 
 @app.route('/panel')
+@login_required
 def loadPage():
     return render_template('panel.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    if current_user.is_authenticated:
+        return redirect(url_for('homepage'))
     form = SignupForm()
     if form.validate_on_submit():
         # create a new user instance
@@ -74,16 +78,16 @@ def signup():
         # save the password in the UserPassword table
         new_password = UserPassword(
             email=form.email.data,
-            password=form.password.data,
             user_account_id=new_user.member_number
         )
+        new_password.set_password(form.password.data)
         db.session.add(new_password)
         db.session.commit()
 
-        # flash a success message and redirect to index page
+        # flash a success message and redirect to homepage
         flash('You have successfully signed up!')
         #return render_template('homepage.html', form=form) #images do not load with this?
-        return redirect(url_for('homepage'))
+        return redirect(url_for('login'))
     # if the email is already in the database, flash an error message
     elif form.email.errors == [EmailError.EMAIL_IN_DB.value]:
         flash(EmailError.EMAIL_IN_DB.value)
@@ -99,7 +103,30 @@ def signup():
     else:  
         return render_template('signup.html', form=form)
 
-
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('homepage'))
+    form = LoginForm() 
+    if form.validate_on_submit():
+        # get the user from the database
+        user = UserPassword.query.filter_by(email=form.email.data).first()
+        # check if the user exists and the password is correct
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid email or password')
+            return redirect(url_for('login'))
+        # login the user
+        login_user(user)
+        print("logging in user")
+        flash('You have successfully logged in!')
+        return redirect(url_for('homepage'))
+    return render_template('login.html', form=form)
     
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash('You have successfully logged out!')
+    return redirect(url_for('homepage'))
 
 
