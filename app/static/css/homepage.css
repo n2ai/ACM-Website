@@ -1,0 +1,216 @@
+/**3-26-2023 Hai Trinh Staff section**/
+
+*{
+    margin:0;
+    padding:0;
+}
+.scrollbar{
+    width: 500px;
+    display:flex;
+    overflow-x: scroll;
+    justify-content: space-between;
+    height: 200px;
+}
+.scrollbar-section::-webkit-scrollbar{
+    width: 10px;
+
+}
+.scrollbar .scrollbar-staff{
+    
+    background-color: #ddd;
+    margin-right: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.scrollbar-staff img{
+    width: 100%;
+    height: 70%;
+}
+
+.scrollbar-section{
+    display:flex;
+    justify-content: center;
+}
+
+.card-title{
+    text-align: center;
+    margin-top: 10px;
+}
+/**4-3-2023 Hai Trinh Staff Carousel Update**/
+.staff-cards-wrapper{
+    width: 1000px;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.staff-card{
+    width:200px;
+    height:400px
+}
+
+.staff-card img{
+    display: flex;
+    align-items: center;
+}
+
+.staff-card .card-body{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.staff-card img{
+    width: 200px;
+    height: 50%;
+}
+
+#staffs{
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+   
+}
+/**3-30-2023 Hai Trinh Events section**/
+/**4-4-2023 Hai Trinh Events section card**/
+.events-section{
+    background-color: #FAE29C;
+}
+
+.events-title{
+    margin-top: 25px;
+}
+.title{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.title > h1{
+    text-align: center;
+}
+
+.events-container{
+    display: flex;
+    justify-content: center;
+    height: 350px;
+}
+
+.events-scrollbar{
+    width: 1000px;
+    display:flex;
+    
+    overflow-x: auto;
+    justify-content: space-between;
+    height:300px
+}
+
+
+.events-container::-webkit-scrollbar{
+    width: 10px;
+    height:10px;
+
+}
+
+.event-card{
+    color: #ddd;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 400px;
+    height: 250px;
+}
+
+.event-card-content{
+    
+    display:grid;
+    grid-template-rows: repeat(10, 30px);
+    grid-template-columns: 100px  300px;
+    background-image: url(/images/codecontest.jpeg);
+    background-size: 100%;
+}
+
+.event-date{
+    grid-row:1/5;
+    border-right: 5px solid olive;
+}
+
+.event-date-day{
+    display: flex;
+    justify-content: center;
+}
+
+.event-date-month{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.event-title{
+    grid-row: 1/4;
+    display: flex;
+    justify-content: center;
+}
+
+.event-destination{
+    grid-row: 5/6;
+    grid-column: 2;
+    display: flex;
+    
+}
+
+.destination{
+    margin-left: 10px;
+}
+
+.event-contactNumber{
+    grid-row: 6/7 ;
+    grid-column: 2;
+    display: flex;
+    
+}
+
+.contactNumber{
+    margin-left: 10px;
+}
+
+.event-contactEmail{
+    grid-row: 7/8;
+    grid-column: 2;
+    display: flex;
+}
+
+.contactEmail{
+    margin-left: 10px;
+}
+
+/**4-3-2023 New sections // Carousel**/
+
+#news{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 400px
+}
+
+#news-section{
+    width: 80%;
+    height: 100%;
+}
+
+.news-item{
+    display:flex;
+    justify-content: center;
+
+}
+
+
+.news-picture-section{
+    background-image: url(/images/ap23064025376604.jpg);
+    
+}
