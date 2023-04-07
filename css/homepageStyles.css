@@ -1,5 +1,15 @@
 
 /**4-3-2023 Hai Trinh Staff Carousel Update**/
+
+#staffs{
+    
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 400px
+   
+}
+
 .staff-cards-wrapper{
     width: 1000px;
     height: 100%;
@@ -13,11 +23,17 @@
     height:400px;
     background-color: gainsboro;
     box-shadow: 15px 15px #FAE29C;
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: all transform 0.5s;
+    transition: all transform 0.5s, all -webkit-transform 0.5s;
+    cursor: pointer;
 }
 
 .staff-card img{
     display: flex;
     align-items: center;
+    width:100%;
+    height:70%;
 }
 
 .staff-card .card-body{
@@ -25,7 +41,11 @@
     align-content: center;
     justify-content: center;
     background-color: gainsboro;
-    box-shadow: 15px 15px #FAE29C;
+    
+}
+
+.staff-card .card-body{
+
 }
 
 .staff-card img{
@@ -33,12 +53,13 @@
     height: 50%;
 }
 
-#staffs{
-    width: 100%;
-    height: 70vh;
-    display: flex;
-    justify-content: center;
-   
+.staff-card:hover{
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
 }
 
 /**4-4-2023 Hai Trinh Events section card**/
@@ -179,16 +200,29 @@
     height: 100%;
 }
 
+.news-title-text > h1{
+    text-align: center;
+}
+
 .news-item img{
     width: 100%;
     height: 100%;
 }
  
 .read-more{
-    
     color: orange;
     display: flex;
     justify-content: center;
     justify-items: center;
     align-items: center;
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: all transform 0.5s;
+    transition: all transform 0.5s, all -webkit-transform 0.5s;
+    cursor: pointer;
+}
+
+
+.read-more:hover{
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
 }
