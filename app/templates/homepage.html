@@ -31,16 +31,10 @@
     <h1>Hi, {{ first_name }}!</h1>
     <a href="{{ url_for('logout') }}">Logout</a>
     
-    <div class="row">
-        <div class="col-12">
-            <h1 class="ms-5">
-                Meet Our Staff
-            </h1> 
-        </div>    
-    </div>
+    
    
     <div class="container mt-3">
-        <h1 class="text-center mb-3">Top 3 Staff Members</h1>
+        <h1 class="text-center mb-3"> Meet Our Staff</h1>
         <div class="scrollbar-section">
             <div class="scrollbar">
                 {% for staff_member in staff_members%}
