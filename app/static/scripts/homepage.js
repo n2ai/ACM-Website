@@ -3,6 +3,8 @@
 $(document).ready(()=>{
     const scrollbarStaff = $(".scrollbar-staff")
 
+    $("html").niceScroll()
+
     scrollbarStaff.on("click", ()=>{
         window.location.replace("")
     })
