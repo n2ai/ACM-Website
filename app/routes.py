@@ -43,9 +43,14 @@ fake_articles   =      [  {
 def homepage():
     staff_members = Staff.query.limit(15).all()
     events = Events.query.limit(15).all()
+    if current_user.is_authenticated:
+        first_name = UserAccount.query.filter_by(email=current_user.email).first().first_name
+        return render_template('homepage.html', first_name= first_name, staff_members=staff_members,events = events, articles = fake_articles)
+    else:
+        guest_first_name = "Guest"
+        return render_template('homepage.html', first_name=guest_first_name, staff_members=staff_members,events = events, articles = fake_articles)  
     #return render_template('homepage.html', staff_members=staff_members,events = events, articles = fake_articles)
-    first_name = UserAccount.query.filter_by(email=current_user.email).first().first_name
-    return render_template('homepage.html', first_name= first_name, staff_members=staff_members,events = events, articles = fake_articles)
+    
 
 @app.route('/staff')
 def staff():
@@ -55,8 +60,11 @@ def staff():
 
 @app.route('/panel')
 @login_required
-def loadPage():
-    return render_template('panel.html')
+def loadPanel():
+    if current_user.is_authenticated:
+        return render_template('panel.html')
+    else:
+        return redirect(url_for('homepage')) 
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
