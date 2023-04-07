@@ -1,43 +1,4 @@
-/**3-26-2023 Hai Trinh Staff section**/
 
-*{
-    margin:0;
-    padding:0;
-}
-.scrollbar{
-    width: 500px;
-    display:flex;
-    overflow-x: scroll;
-    justify-content: space-between;
-    height: 200px;
-}
-.scrollbar-section::-webkit-scrollbar{
-    width: 10px;
-
-}
-.scrollbar .scrollbar-staff{
-    
-    background-color: #ddd;
-    margin-right: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-
-}
-
-.scrollbar-staff img{
-    width: 100%;
-    height: 70%;
-}
-
-.scrollbar-section{
-    display:flex;
-    justify-content: center;
-}
-
-.card-title{
-    text-align: center;
-    margin-top: 10px;
-}
 /**4-3-2023 Hai Trinh Staff Carousel Update**/
 .staff-cards-wrapper{
     width: 1000px;
@@ -49,7 +10,9 @@
 
 .staff-card{
     width:200px;
-    height:400px
+    height:400px;
+    background-color: gainsboro;
+    box-shadow: 15px 15px #FAE29C;
 }
 
 .staff-card img{
@@ -61,10 +24,12 @@
     display: flex;
     align-content: center;
     justify-content: center;
+    background-color: gainsboro;
+    box-shadow: 15px 15px #FAE29C;
 }
 
 .staff-card img{
-    width: 200px;
+    width: 100%;
     height: 50%;
 }
 
@@ -75,7 +40,7 @@
     justify-content: center;
    
 }
-/**3-30-2023 Hai Trinh Events section**/
+
 /**4-4-2023 Hai Trinh Events section card**/
 .events-section{
     background-color: #FAE29C;
@@ -84,12 +49,12 @@
 .events-title{
     margin-top: 25px;
 }
-.title{
+.events-title-text{
     display:flex;
     justify-content: center;
     align-items: center;
 }
-.title > h1{
+.events-title-text > h1{
     text-align: center;
 }
 
@@ -108,22 +73,33 @@
     height:300px
 }
 
+::-webkit-scrollbar{
+    height: 0.5em;
+    width: 0.5em;
+}
 
-.events-container::-webkit-scrollbar{
-    width: 10px;
-    height:10px;
+.events-scrollbar::-webkit-scrollbar-track{
+    background: gray;
+    border-radius: 100vw;
+    margin-block: 0.5em;
+}
 
+.events-scrollbar::-webkit-scrollbar-thumb{
+    background-color: hsl(47, 38%, 78%);
+    
+    border-radius: 100vw;
 }
 
 .event-card{
     color: #ddd;
-    margin-right: 10px;
+    margin-right: 25px;
     margin-top: 10px;
     margin-bottom: 10px;
-    border-radius: 10px;
+ 
     cursor: pointer;
     width: 400px;
     height: 250px;
+    box-shadow: 10px -10px gainsboro;
 }
 
 .event-card-content{
@@ -137,7 +113,7 @@
 
 .event-date{
     grid-row:1/5;
-    border-right: 5px solid olive;
+    border-right: 5px solid whitesmoke;
 }
 
 .event-date-day{
@@ -203,14 +179,16 @@
     height: 100%;
 }
 
-.news-item{
-    display:flex;
-    justify-content: center;
-
+.news-item img{
+    width: 100%;
+    height: 100%;
 }
-
-
-.news-picture-section{
-    background-image: url(/images/ap23064025376604.jpg);
+ 
+.read-more{
     
+    color: orange;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
 }
