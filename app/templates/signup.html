@@ -12,8 +12,7 @@
         href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Rubik:wght@400;500;700&display=swap"
         rel="stylesheet">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
-        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -34,11 +33,16 @@
                 {{ form.first_name }}
                 {{ form.last_name}}
                 <br>
-                {{ form.email}}    
+                {{ form.email}}
                 {{ form.email.errors[0] }} <!--Front end will work on this-->
                 <br>
-                {{ form.password}}
+                {{ form.password }}
+                <br>
+                {{ form.password2 }}
+
+                <div id="password-mismatch-msg" style="display: none;">Passwords do not match</div>
             </div>
+
 
             <!--Submission button-->
             <div class="button-div" method="POST" action="{{ url_for('signup') }}">
@@ -56,8 +60,29 @@
                 </div>
             </div>
         </form>
-        <script src="{{url_for('static', filename='scripts/signup.js')}}"></script>
+
     </div>
 </body>
 
 </html>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script src="{{url_for('static', filename='scripts/signup.js')}}"></script>
+
+<script>
+    const submitBtn = $('#submit');
+    submitBtn.attr('disabled', true);
+
+    $('#password2').on('keyup', function () {
+        const password = $('#password').val();
+        const password2 = $(this).val();
+        if (password !== password2) {
+            $('#password-mismatch-msg').show(); // display message
+            submitBtn.attr('disabled', true); // disable submit button
+        } else {
+            $('#password-mismatch-msg').hide(); // hide message
+            submitBtn.attr('disabled', false); // enable submit button
+        }
+    });
+    </script>

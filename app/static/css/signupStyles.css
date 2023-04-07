@@ -63,7 +63,7 @@ body{
 .login-session{
     display:grid;
     grid-template-columns: repeat(2,1fr);
-    grid-template-rows: repeat(3,1fr);
+    grid-template-rows: repeat(5,1fr);
     column-gap: 20px;
     row-gap: 15px;
     padding-top: 10px;
@@ -90,6 +90,16 @@ body{
     grid-column: 1/3;
 }
 
+#password2{
+    grid-row: 4 ;
+    grid-column: 1/3;
+}
+
+#password-mismatch-msg{
+    grid-row: 5 ;
+    grid-column: 1/3;
+    color: red;
+}
 .login-item{
     height: 30px;
     background-color:	#DCDCDC;

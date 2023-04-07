@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, ValidationError
+from wtforms.validators import DataRequired, ValidationError, EqualTo, equal_to
 from app.models import UserPassword
 from enum import Enum
 
@@ -16,8 +16,11 @@ class SignupForm(FlaskForm):
     last_name = StringField('Last name', validators=[DataRequired()], render_kw={"placeholder": "Last name", "class": "login-item", "id": "lastName"})
     email = StringField('Email', validators=[DataRequired()], render_kw={"placeholder": "Email", "class": "login-item", "id": "email"})
     password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password", "class": "login-item", "id": "password"})
+    password2 = PasswordField('Confirm Password', validators=[DataRequired(), equal_to('password', message='Passwords must match')], 
+                              render_kw={"placeholder": "Confirm Password", "class": "login-item", "id": "password2"})
 
     submit = SubmitField('Sign-Up')
+
 
 
     def validate_email(self, email):
