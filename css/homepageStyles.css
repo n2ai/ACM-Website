@@ -1,4 +1,10 @@
-
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'DM Mono', monospace;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Rubik', sans-serif;
+}
 /**4-3-2023 Hai Trinh Staff Carousel Update**/
 
 #staffs{
@@ -44,8 +50,8 @@
     
 }
 
-.staff-card .card-body{
-
+.staffs-section-title-text > h1{
+    text-align: center;
 }
 
 .staff-card img{
@@ -99,13 +105,13 @@
     width: 0.5em;
 }
 
-.events-scrollbar::-webkit-scrollbar-track{
-    background: gray;
+::-webkit-scrollbar-track{
+    background: grey;
     border-radius: 100vw;
     margin-block: 0.5em;
 }
 
-.events-scrollbar::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb{
     background-color: hsl(47, 38%, 78%);
     
     border-radius: 100vw;
@@ -113,14 +119,26 @@
 
 .event-card{
     color: #ddd;
-    margin-right: 25px;
+    margin-right: 35px;
+    margin-left:5px;
     margin-top: 10px;
     margin-bottom: 10px;
- 
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: all transform 0.5s;
+    transition: all transform 0.5s, all -webkit-transform 0.5s;
     cursor: pointer;
     width: 400px;
     height: 250px;
-    box-shadow: 10px -10px gainsboro;
+    box-shadow: 10px 10px white;
+}
+
+.event-card:hover{
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    
 }
 
 .event-card-content{
@@ -133,7 +151,7 @@
 }
 
 .event-date{
-    grid-row:1/5;
+    grid-row:2/5;
     border-right: 5px solid whitesmoke;
 }
 
@@ -149,9 +167,10 @@
 }
 
 .event-title{
-    grid-row: 1/4;
+    grid-row: 2/5;
     display: flex;
     justify-content: center;
+    align-content: center;
 }
 
 .event-destination{
@@ -225,4 +244,46 @@
 .read-more:hover{
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
+}
+/**Hai Trinh 4-7-2023 Footer section**/
+footer{
+    margin-top: 15px;
+    display: flex;
+    background-color: #5C5C5C;
+    justify-content: space-around;
+    
+}
+
+.acm-footer-logo{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.acm-footer-sponsors h3{
+    text-align: center;
+}
+
+.acm-footer-sponsors{
+    margin-bottom: 15px;
+}
+
+.acm-logo{
+    width: 100px;
+    height: 100px;
+}
+
+.acm-main-logo{
+    width: 100px;
+    height: 100px;
+}
+
+.cahsi-logo{
+    width: 200px;
+    height:70px
+}
+
+.sa-logo{
+    width: 100px;
+    height: 100px;
 }
