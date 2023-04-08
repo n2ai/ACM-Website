@@ -21,6 +21,8 @@ class UserAccount(db.Model):
     date_added = db.Column(db.String(10), default=datetime.utcnow().strftime('%Y-%m-%d'), nullable=True)
     expiration_date = db.Column(db.DateTime, nullable=True)
     active_acm_member = db.Column(db.Boolean, nullable=True)
+    image_url = db.Column(db.String(255), nullable=True)
+    is_admin = db.Column(db.Boolean, default=False, nullable=True)
 #main user account table ^^
 
 
@@ -73,5 +75,8 @@ class Events(db.Model):
     place = db.Column(db.String(128), nullable=False)
     time = db.Column(db.String(15), nullable=False)
     date = db.Column(db.String(15), nullable=False)
-    #contact_number = db.Column(db.String(16), nullable=False)
-    #contact_email = db.Column(db.String(64), nullable=False)
+    image_url = db.Column(db.String(255), nullable=False)
+    contact_number = db.Column(db.String(16), nullable=True)
+    contact_email = db.Column(db.String(64), nullable=True)
+
+

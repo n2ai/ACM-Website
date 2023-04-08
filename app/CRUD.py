@@ -2,7 +2,7 @@
 from flask import jsonify, request, render_template, flash, redirect, url_for
 
 from app import app, db
-from app.models import Events
+from app.models import Events, Staff, News, UserAccount
 
 #event CRUD commands
 @app.route('/events', methods=['POST'])
@@ -13,7 +13,8 @@ def create_event():
     place = request.form['place']
     time = request.form['time']
     date = request.form['date']
-    event = Events(title=title, summary=summary, presenter=presenter, place=place, time=time, date=date)
+    image_url = request.form['image_url']
+    event = Events(title=title, summary=summary, presenter=presenter, place=place, time=time, date=date, image_url = image_url)
     db.session.add(event)
     db.session.commit()
     #return jsonify({'message': 'Event created successfully!'})
@@ -29,7 +30,7 @@ def update_event():
     place = request.form['place']
     time = request.form['time']
     date = request.form['date']
-
+    image_url = request.form['image_url']
     # Check if the event exists
     event = Events.query.filter_by(title=title).first()
     if not event:
@@ -43,6 +44,7 @@ def update_event():
     event.place = place
     event.time = time
     event.date = date
+    event.image_url = image_url
     db.session.commit()
 
     # Redirect the user back to the events page
@@ -55,6 +57,22 @@ def get_events():
     events = Events.query.all()
     return render_template('panel.html', events=events)
 
+
+#route for loading the chosen table from the dropdown menu
+@app.route('/load', methods=['GET'])
+def load_table():
+    category = request.args.get('category')
+    if category == 'events':
+        events = Events.query.all()
+        return render_template('events.html', events=events)
+    elif category == 'users':
+        users = UserAccount.query.all()
+        return render_template('users.html', users=users)
+    elif category == 'news':
+        news = News.query.all()
+        return render_template('news.html', news=news)
+    else:
+        return "Invalid category"
 
 
 

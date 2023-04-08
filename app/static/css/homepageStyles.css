@@ -99,13 +99,9 @@
 }
 
 .event-card-content{
-    
     display:grid;
     grid-template-rows: repeat(10, 30px);
     grid-template-columns: 100px  300px;
-    background-image: url(/static/images/codecontest.jpeg);
-    background-size: 100%;
-    background-repeat: no-repeat;
 }
 
 

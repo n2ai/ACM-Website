@@ -6,7 +6,7 @@ from flask_wtf.csrf import CSRFProtect,validate_csrf
 from flask_login import LoginManager
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 app.config.from_object(Config)
 app.config['WTF_CSRF_ENABLED'] = False
 

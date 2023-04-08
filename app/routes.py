@@ -61,8 +61,11 @@ def staff():
 @app.route('/panel')
 @login_required
 def loadPanel():
+    staff_members = Staff.query.all()
+    events = Events.query.all()
+    users = UserAccount.query.all()
     if current_user.is_authenticated:
-        return render_template('panel.html')
+        return render_template('panel.html', staff_members=staff_members,events = events, users = users)
     else:
         return redirect(url_for('homepage')) 
 

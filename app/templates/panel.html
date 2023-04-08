@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+
 <html>
   <a href="{{ url_for('loadPanel') }}" class="btn btn-light"> >Go to Admin Panel<</a>
   <a href="{{ url_for('signup') }}" class="btn btn-light"> >Go to Signup Page<</a>
@@ -36,63 +38,36 @@
 <div class = "daGrid">
 
   <!-- Events table updating-->  
-  <form method="POST" action="http://127.0.0.1:5000/events">
+  <form method="POST" action="/events">
+
+    
     <h2>Create Event</h2>
-    <label for="title">Title:</label>
-    <input type="text" name="title" required>
-    <br>
-    <label for="summary">Summary:</label>
-    <input type="text" name="summary" required>
-    <br>
-    <label for="presenter">Presenter:</label>
-    <input type="text" name="presenter" required>
-    <br>
-    <label for="place">Place:</label>
-    <input type="text" name="place" required>
-    <br>
-    <label for="time">Time:</label>
-    <input type="text" name="time" required>
-    <br>
-    <label for="date">Date:</label>
-    <input type="date" name="date" required>
-    <br>
+
+    <ul>
+      <li><label for="title">Title:</label><input type="text" name="title" required></li>
+      <li><label for="summary">Summary:</label><input type="text" name="summary" required></li>
+      <li><label for="presenter">Presenter:</label><input type="text" name="presenter" required></li>
+      <li><label for="place">Place:</label><input type="text" name="place" required></li>
+      <li><label for="time">Time:</label><input type="text" name="time" required></li>
+      <li><label for="date">Date:</label><input type="date" name="date" required></li>
+      <li><label for="image_url">Image Link / Path:</label><input type="text" name="image_url" required></li>
+  </ul>
+    
     <button type="submit">Create Event</button>
   </form>
 
-  <form method="GET" action="http://127.0.0.1:5000/events">
-    <div>
-      <h2>Events</h2>
-      <ul>
-        {% for event in events %}
-        <li>{{ event.title }} - {{ event.date }} - {{ event.place }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <button type="submit">Load Events</button>
-  </form>
+  
 
 
   <!-- Experimental, trying to reduce code repetition. 
   Goal is to use 1 block to select content that will be modified. 
   then dynamically update CRUD blocks to handle the selected content-->
-  <form method="GET" action="http://127.0.0.1:5000/load">
-    <div>
-      <h2>Load Content</h2>
-      <label for="category">Select a category:</label>
-      <select name="category" id="category">
-        <option value="events">Events</option>
-        <option value="staff">Staff</option>
-        <option value="news">News</option>
-      </select>
-      <br>
-      <button type="submit">Load</button>
-    </div>
-  </form>
+
 
   
 
   
-  <form method="POST" action="http://127.0.0.1:5000/UPDATE">
+  <form method="POST" action="/UPDATE">
     <h2>Update Event</h2>
     <input type="hidden" name="_method" value="PUT">
     <label for="title">Select Event:</label>
@@ -102,28 +77,19 @@
       {% endfor %}
     </select>
     <br>
-    <label for="new_title">New Title:</label>
-    <input type="text" name="new_title" required>
-    <br>
-    <label for="summary">Summary:</label>
-    <input type="text" name="summary" required>
-    <br>
-    <label for="presenter">Presenter:</label>
-    <input type="text" name="presenter" required>
-    <br>
-    <label for="place">Place:</label>
-    <input type="text" name="place" required>
-    <br>
-    <label for="time">Time:</label>
-    <input type="text" name="time" required>
-    <br>
-    <label for="date">Date:</label>
-    <input type="date" name="date" required>
-    <br>
+    <ul>
+      <li><label for="new_title">Title:</label><input type="text" name="new_title" required></li>
+      <li><label for="summary">Summary:</label><input type="text" name="summary" required></li>
+      <li><label for="presenter">Presenter:</label><input type="text" name="presenter" required></li>
+      <li><label for="place">Place:</label><input type="text" name="place" required></li>
+      <li><label for="time">Time:</label><input type="text" name="time" required></li>
+      <li><label for="date">Date:</label><input type="date" name="date" required></li>
+      <li><label for="image_url">Image Link / Path:</label><input type="text" name="image_url" required></li>
+  </ul>
     <button type="submit">Update Event</button>
   </form>
 
-  <form method="POST" action="http://127.0.0.1:5000/DEL">
+  <form method="POST" action="/DEL">
     <h2>Delete Event</h2>
     <input type="hidden" name="_method" value="DELETE">
 
@@ -143,6 +109,30 @@
 </div>
 
 
+<form method="GET" action="/load" id="load-form">
+  <div>
+    <h2>Load Content</h2>
+    <label for="category">Select a category:</label>
+    <select name="category" id="category">
+      <option value="events">Load Events</option>
+      <option value="users">Load User Accounts</option>
+      <option value="news">Load News</option>
+    </select>
+    <br>
+    <button type="submit">Load</button>
+  </div>
+</form>
+
+
+<div class="edit-table">
+  {% if events %}
+    {% include 'events.html' %}
+  {% elif staff %}
+    {% include 'users.html' %}
+  {% elif news %}
+    {% include 'news.html' %}
+  {% endif %}
+</div>
 
 
 
@@ -156,3 +146,5 @@
 </footer>
 
 </html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{ url_for('static', filename='scripts/adminPanel.js') }}"></script>

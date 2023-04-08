@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>User Accounts</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/panelStyles.css') }}">
+  </head>
+  <body>
+    <h1>User Accounts Table</h1>
+    <table>
+      <tr>
+        <th>Member Number</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Affiliation</th>
+        <th>Membership Type</th>
+        <th>Date Added</th>
+        <th>Expiration Date</th>
+        <th>Active ACM Member</th>
+        <th>Image URL</th>
+        <th>Is Admin</th>
+      </tr>
+      {% for user in users %}
+      <tr>
+        <td>{{ user.member_number }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.affiliation }}</td>
+        <td>{{ user.membership_type }}</td>
+        <td>{{ user.date_added }}</td>
+        <td>{{ user.expiration_date }}</td>
+        <td>{{ user.active_acm_member }}</td>
+        <td>{{ user.image_url }}</td>
+        <td>{{ user.is_admin }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

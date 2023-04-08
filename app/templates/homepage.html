@@ -82,11 +82,12 @@
                 <h1>Event</h1>
             </div>
         </div>
-    
+        
         <div class="events-container">
             <div class="events-scrollbar">
                 {% for event in events %}
-                <div class=" shadow-lg event-card event-card-content" class="card">
+                <div class=" shadow-lg event-card event-card-content" 
+                style="background-image: url('{{ event.image_url }}'); background-size: cover; background-repeat: no-repeat;" class="card">
                     <div class="card-body" style="width: 400px; height: 300px;">
                         <div class="event-date">
                             <div class="event-date-day"><h4>{{ event.date }}</h4></div>

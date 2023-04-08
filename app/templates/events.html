@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    
+  <head>
+    <title>Events</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/panelStyles.css') }}">
+  </head>
+  <body>
+    <h1>Events Table</h1>
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Summary</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Presenter</th>
+        <th>Location</th>
+        <th>Image Link</th>
+      </tr>
+      {% for event in events %}
+      <tr>
+        <td>{{ event.title }}</td>
+        <td>{{ event.summary[:20] }}...</td>
+        <td>{{ event.date }}</td>
+        <td>{{ event.time }}</td>
+        <td>{{ event.presenter }}</td>
+        <td>{{ event.place }}</td>
+        <td>{{ event.image_url }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
+
+
+

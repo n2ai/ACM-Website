@@ -3,21 +3,21 @@
 $(document).ready(()=>{
     
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    
-    const submitBtn = $('#submit-btn');
+
+    const submitBtn = $('#submit');
     submitBtn.attr('disabled', true);
 
     $('#password2').on('keyup', function () {
         const password = $('#password').val();
         const password2 = $(this).val();
         if (password !== password2) {
-          $('#password-mismatch-msg').show(); // display message
-          submitBtn.attr('disabled', true); // disable submit button
+            $('#password-mismatch-msg').show(); // display message
+            submitBtn.attr('disabled', true); // disable submit button
         } else {
-          $('#password-mismatch-msg').hide(); // hide message
-          submitBtn.attr('disabled', false); // enable submit button
+            $('#password-mismatch-msg').hide(); // hide message
+            submitBtn.attr('disabled', false); // enable submit button
         }
-      });
+    });
 
 
     $('form').on('submit',(e)=>{
@@ -27,7 +27,6 @@ $(document).ready(()=>{
         const lastName = $('#lastName').val()
         const email = $('#email').val()
         const password = $('#password').val()
-        console.log(csrf_token)
         fetch('/signup', {
             method:'POST',
             body:JSON.stringify({
