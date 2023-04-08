@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='/css/homepageStyles.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='/css/homepageStyles2.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.4.slim.js" integrity="sha256-dWvV84T6BhzO4vG6gWhsWVKVoa4lVmLnpBOZh/CAHU4=" crossorigin="anonymous"></script>
     <script src="{{url_for('static', filename='/scripts/homepage.js')}}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <title>Homepage</title>
 </head>
@@ -32,22 +36,44 @@
     <a href="{{ url_for('logout') }}">Logout</a>
     
     
-   
-    <div class="container mt-3">
-        <h1 class="text-center mb-3"> Meet Our Staff</h1>
-        <div class="scrollbar-section">
-            <div class="scrollbar">
-                {% for staff_member in staff_members%}
-                <div class="scrollbar-staff shadow-lg" class="card" >
-                    <img class="card-img-top" src="{{staff_member.image_url}}" alt="{{staff_member.name}}">
-                    <div class="card-body" style="width: 150px; height: 1em;" >
-                        <h5 class="card-title">{{staff_member.name}}</h5>
-                    </div>
+    <div class="row staffs-carousel-title">
+        <div class="col-12 staffs-section-title-text">
+            <h1 class="text-center mb-3"> Meet Our Staff</h1>
+        </div>    
+    </div>
+    <section id="staffs">
+        
+        <div id="staffs-carousel" class="carousel slide carousel-dark">
+          <div class="carousel-inner w-100 h-100">
+            {% for i in range(0, staff_members|length, 3) %}
+            <div class="carousel-item w-100 h-100{% if i == 0 %} active{% endif %}">
+              <div class="staff-cards-wrapper">
+                {% for staff_member in staff_members[i:i+3] %}
+                <div class="card staff-card">
+                  <img src="{{ staff_member.image_url }}" class="card-img-top w-100 h-75" alt="{{ staff_member.name }}">
+                  <div class="card-body">
+                    <h1>{{ staff_member.name }}</h1>
+                    <p>{{ staff_member.job_title }}</p>
+                  </div>
                 </div>
                 {% endfor %}
+              </div>
             </div>
+            {% endfor %}
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#staffs-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#staffs-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-    </div>
+      </section>
+      
+    
+    
 
     <!--Hai Trinh 3-30-2023-->
     <div class="events-section">
@@ -60,7 +86,7 @@
         <div class="events-container">
             <div class="events-scrollbar">
                 {% for event in events %}
-                <div class="event-card shadow-lg" class="card">
+                <div class=" shadow-lg event-card event-card-content" class="card">
                     <div class="card-body" style="width: 400px; height: 300px;">
                         <div class="event-date">
                             <div class="event-date-day"><h4>{{ event.date }}</h4></div>
@@ -73,21 +99,21 @@
                             <span class="material-symbols-outlined">
                                 location_on
                             </span>
-                            <h5 class="destination">{{ event.place }}</h5>
+                            <h5 class="destination">{{event.place}}</h5>
                         </div>
+                        
                         <div class="event-contactNumber">
                             <span class="material-symbols-outlined">
                                 call
                             </span>
-                            <h5 class="contactNumber">{{ event.contact_number }}</h5>
+                            <h5 class="contactNumber">
+                                0905136250</h5>
                         </div>
                         <div class="event-contactEmail">
                             <span class="material-symbols-outlined">
                                 mail
                             </span>
-
-                            <h5 class="contactEmail"><a href="mailto:{{ event.contact_email }}">{{ event.contact_email }} </a></h5>
-                           
+                            <h5 class="contactEmail">longhai2511@gmail.com</h5>
                         </div>
                     </div>
                 </div>
@@ -126,8 +152,6 @@
             {% endfor %}
         </div>
     </div>
-    
-    
 
 
 </body>

@@ -50,6 +50,7 @@
 /**3-30-2023 Hai Trinh Events section**/
 .events-section{
     background-color: #FAE29C;
+    
 }
 
 .events-title{
@@ -85,19 +86,35 @@
     height:10px;
 
 }
-
 .event-card{
-    background-color: #ddd;
-    margin-right: 10px;
-    border-radius: 10px;
+    color: #ddd;
+    margin-right: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+ 
     cursor: pointer;
+    width: 400px;
+    height: 250px;
+    box-shadow: 10px -10px rgb(66, 66, 66);
 }
+
+.event-card-content{
+    
+    display:grid;
+    grid-template-rows: repeat(10, 30px);
+    grid-template-columns: 100px  300px;
+    background-image: url(/static/images/codecontest.jpeg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+
+
 
 .card-body{
     display:grid;
     grid-template-rows: repeat(10, 30px);
     grid-template-columns: 100px  300px;
-
 }
 
 .event-date{
